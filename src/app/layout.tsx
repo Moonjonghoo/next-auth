@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import { Logout } from "@/lib/action";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +28,11 @@ export default function RootLayout({
           </li>
           <li>
             <Link href="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <form action={Logout}>
+              <button type="submit">Logout</button>
+            </form>
           </li>
         </ul>
         <div>{children}</div>

@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import connectDB from "./db";
 import { Member } from "./schema";
 import { hash } from "bcryptjs";
@@ -28,7 +28,7 @@ export async function register(formData: FormData) {
     email,
     password: hashedPassword,
   });
-  newMember.save();
+  await newMember.save();
   redirect("/login");
 }
 
@@ -56,4 +56,8 @@ export async function login(formData: FormData) {
 
 export async function GithubLogin() {
   await signIn("github", { callbackUrl: "/" });
+}
+
+export async function Logout() {
+  await signOut();
 }
