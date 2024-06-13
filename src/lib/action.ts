@@ -28,7 +28,7 @@ export async function register(formData: FormData) {
     email,
     password: hashedPassword,
   });
-  await newMember.save();
+  newMember.save();
   redirect("/login");
 }
 
